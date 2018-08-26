@@ -15,22 +15,29 @@
 
 // 
 
-function tranlate(decNumber, base){
-    var bitArr = '0123456789ABCDEF'
-    var result = []
+const quickSort2 = function (nums) {
+    if(nums.length < 2) return nums
 
-    while(decNumber > 0){
-        var cur = decNumber % base
-        result.push(bitArr[cur])
-        decNumber = Math.floor(decNumber / base)
+    var midIndex = Math.floor(nums.length / 2)
+    var middle = nums.splice(midIndex, 1)[0]
+    var leftArr = []
+    var rightArr = []
+
+    for (let i = 0; i < nums.length; i++) {
+        const o = nums[i];
+        o < middle
+            ? leftArr.push(o)
+            : rightArr.push(o)
     }
 
-    return result.reverse().join('')
+    return quickSort2(leftArr)
+            .concat(middle)
+            .concat(quickSort2(rightArr))
 }
 
 
 
-const quickSort2 = function (nums) {
+const quickSort = function (nums) {
     var sort = function(low, high){
         var i = low
         var j= high
@@ -61,5 +68,52 @@ const quickSort2 = function (nums) {
 
     return nums
 }
+  
+const mergeSort = function(nums){
+    let merge = function(left, right){
+      var result = []
+    
+      while(left.length > 0 && right.length > 0){
+        left[0] > right[0]
+          ? result.push(right.shift())
+          : result.push(left.shift())
+      }
+    
+      return result.concat(left).concat(right)
+    }
+  
+    if(nums.length < 2){
+      return nums
+    }
+  
+    let middle = Math.floor(nums.length / 2)
+    let left = nums.slice(0, middle)
+    let right = nums.slice(middle)
+  
+    return merge(mergeSort(left), mergeSort(right))
+}
 
-console.log(quickSort2([5, 6, 8, 2, -2, 100]));
+
+var nums = [5, 6, 8, 2, -2, 100, 99, 98, 102.1]
+
+for (let i = 0; i < 1; i++) {
+    console.log(quickSort2(nums));
+}
+
+
+
+function binarySearch(arr, target, start, end){
+    var end = end || arr.length - 1
+    var start = start || 0
+    var m = Math.floor((start + end) / 2)
+
+    if(arr[m] < target){
+        binarySearch(arr, target, m + 1, end)
+    }else if(arr[m] > target){
+        binarySearch(arr, target, start, m - 1)
+    }else{
+        console.log(m);
+    }
+}
+
+binarySearch([1,2,3,4], 4, 0, 3)
