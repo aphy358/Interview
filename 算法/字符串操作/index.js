@@ -26,3 +26,10 @@ function max () {
   console.log("出现最多的字符串是:"+value+',出现次数是'+num)
 }
 max(str)
+
+function isPalindrome2(str){
+  var tmp = str.split('').reverse().join('')
+  return str == tmp
+}
+
+console.log(isPalindrome2('abaaba'));
