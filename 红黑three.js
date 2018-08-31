@@ -35,7 +35,29 @@ const quickSort2 = function (nums) {
             .concat(quickSort2(rightArr))
 }
 
-
+const mergeSort2 = function(nums){
+    let merge = function(left, right){
+      var result = []
+    
+      while(left.length > 0 && right.length > 0){
+        left[0] > right[0]
+          ? result.push(right.shift())
+          : result.push(left.shift())
+      }
+    
+      return result.concat(left).concat(right)
+    }
+  
+    if(nums.length < 2){
+      return nums
+    }
+  
+    let middle = Math.floor(nums.length / 2)
+    let left = nums.slice(0, middle)
+    let right = nums.slice(middle)
+  
+    return merge(mergeSort(left), mergeSort(right))
+  }
 
 const quickSort = function (nums) {
     var sort = function(low, high){
@@ -96,24 +118,14 @@ const mergeSort = function(nums){
 
 var nums = [5, 6, 8, 2, -2, 100, 99, 98, 102.1]
 
-for (let i = 0; i < 1; i++) {
-    console.log(quickSort2(nums));
+var t1 = +new Date
+for (let i = 0; i < 100000000; i++) {
+    quickSort2(nums)
 }
+var t2 = +new Date - t1
+console.log(t2);
 
 
 
-function binarySearch(arr, target, start, end){
-    var end = end || arr.length - 1
-    var start = start || 0
-    var m = Math.floor((start + end) / 2)
 
-    if(arr[m] < target){
-        binarySearch(arr, target, m + 1, end)
-    }else if(arr[m] > target){
-        binarySearch(arr, target, start, m - 1)
-    }else{
-        console.log(m);
-    }
-}
 
-binarySearch([1,2,3,4], 4, 0, 3)
