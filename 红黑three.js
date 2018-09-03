@@ -116,16 +116,41 @@ const mergeSort = function(nums){
 }
 
 
-var nums = [5, 6, 8, 2, -2, 100, 99, 98, 102.1]
+// var nums = [5, 6, 8, 2, -2, 100, 99, 98, 102.1]
 
-var t1 = +new Date
-for (let i = 0; i < 100000000; i++) {
-    quickSort2(nums)
+// var t1 = +new Date
+// for (let i = 0; i < 100000000; i++) {
+//     quickSort2(nums)
+// }
+// var t2 = +new Date - t1
+// console.log(t2);
+
+
+function getLongestArr(nums){
+    var finalArr = []
+
+    for (let i = 0; i < nums.length; i++) {
+        var tmpArr = [nums[i]]
+
+        for (let j = i + 1; j < nums.length; j++) {
+            if(nums[j] > tmpArr[tmpArr.length - 1]){
+                tmpArr.push(nums[j])
+
+                if(tmpArr.length > finalArr.length){
+                    finalArr = tmpArr
+                }
+            }else{
+                if(tmpArr.length > finalArr.length){
+                    finalArr = tmpArr
+                }
+
+                break;
+            }
+        }
+    }
+
+    console.log(finalArr);
 }
-var t2 = +new Date - t1
-console.log(t2);
 
-
-
-
-
+var nums = [100, 5, 6, 8, 2, -2, 99, 198, 200]
+getLongestArr(nums)
