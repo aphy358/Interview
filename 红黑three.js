@@ -140,10 +140,6 @@ function getLongestArr(nums){
                     finalArr = tmpArr
                 }
             }else{
-                if(tmpArr.length > finalArr.length){
-                    finalArr = tmpArr
-                }
-
                 break;
             }
         }
