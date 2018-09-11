@@ -150,3 +150,23 @@ function getLongestArr(nums){
 
 var nums = [100, 5, 6, 8, 2, -2, 99, 198, 200]
 getLongestArr(nums)
+
+function process(arr){
+    let count = 0
+    for (let i = 0; i < arr.length - count; i++) {
+        if(arr[i] === 0){
+            count++
+            for (let j = i; j < arr.length; j++) {
+                arr[j] = arr[j + 1]
+            }
+            arr[arr.length - 1] = 0
+            if(arr[i] === 0){
+                i--
+            }
+        }
+    }
+
+    console.log(arr);
+}
+
+process([1,0,2,3,0,0,8,9,0,0])
