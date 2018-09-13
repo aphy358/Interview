@@ -113,7 +113,7 @@ function getLongestArr(nums){
 }
 
 var nums = [100, 5, 6, 8, 2, -2, 99, 198, 200]
-getLongestArr(nums)
+// getLongestArr(nums)
 
 function process(arr){
     let count = 0
@@ -133,10 +133,32 @@ function process(arr){
     console.log(arr);
 }
 
-process([1,0,2,3,0,0,8,9,0,0])
+// process([1,0,2,3,0,0,8,9,0,0])
 
-var A = function (){
-    console.log('hello')
+
+function bigDataAdd(num1, num2){
+    let maxLen = Math.max(num1.length, num2.length)
+    num1 = num1.split('').reverse().join('')
+    num2 = num2.split('').reverse().join('')
+    sum = []
+    flag = 0
+
+    for (let i = 0; i < maxLen; i++) {
+        let tmpSum = (+num1[i] || 0) + (+num2[i] || 0) + flag
+        if(tmpSum > 9){
+            flag = 1
+        }else{
+            flag = 0
+        }
+        sum.push(tmpSum % 10)
+    }
+
+    if(flag == 1){
+        sum.push(1)
+    }
+
+    console.log(sum.reverse().join(''));
 }
 
-var a = new A()
+
+bigDataAdd('999', '9999')
