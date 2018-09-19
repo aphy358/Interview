@@ -74,13 +74,16 @@ const quickSort = function (nums) {
     }
 
     sort(0, nums.length - 1)
-
+    console.log(nums);
     return nums
 }
-  
+
+
+
 
 
 // var nums = [5, 6, 8, 2, -2, 100, 99, 98, 102.1]
+// quickSort(nums)
 
 // var t1 = +new Date
 // for (let i = 0; i < 100000000; i++) {
