@@ -1,0 +1,42 @@
+<view class="calendar-week-title">
+  <view class='table'>
+    <view class='tr'>
+      <view class='th' style='color:#1FC756;'>日</view>
+      <view class='th'>一</view>
+      <view class='th'>二</view>
+      <view class='th'>三</view>
+      <view class='th'>四</view>
+      <view class='th'>五</view>
+      <view class='th' style='color:#1FC756;'>六</view>
+    </view>
+  </view>
+</view> 
+
+
+<view class="calendar-body-wrap">
+
+  <view wx:for="{{ showMonths }}" wx:for-index="i" wx:for-item="m" class="calendar-body">
+    <view class='table'>
+      <view class='tr'>
+        <view class='th'><h5 id="first-month">{{ m.year }}年{{ m.month }}月</h5></view>
+      </view>
+
+      <view class='tr' wx:for="{{ m.weeks.length }}" wx:for-index="j" wx:for-item="week">
+        <view wx:for="{{ m.weeks[j] }}" wx:for-index="k" wx:for-item="day"
+          class="td {{ day.dayClass }}" 
+          bindtap='clickOneDay' data-day="{{ day }}" data-m="{{ m }}"
+        >
+
+          <text class="{{ day.dayTextClass }}">{{ day.festText || day.today || day.day }}</text>
+
+          <text wx:if="{{ day.checkDayStr }}" class="{{ day.dayCheckinClass }}"></text>
+
+          <text wx:if="{{ day.checkDayStr == 1 }}" class="checkin-text">入住</text>
+          <text wx:if="{{ day.checkDayStr == 2 }}" class="checkout-text">离店</text>
+
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

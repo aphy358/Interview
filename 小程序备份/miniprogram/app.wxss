@@ -1,0 +1,12 @@
+/**app.wxss**/
+@import "./assets/fonts/iconfont.wxss";
+
+page {
+  background: #F0EFF5;
+  font-size: 28rpx;
+  color: #333;
+}
+
+button::after{
+  border: none;
+}
