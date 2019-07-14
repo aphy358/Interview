@@ -165,43 +165,31 @@ quickSort(nums)
 console.log(nums);
 
 
-var tt =
-{
-    "dataList": null,
-    "returnCode": 1,
-    "returnMsg": "请求成功！",
-    "data": {
-        "referenceNumber": "A55555666",
-        "checkIn": "2018/08/10",
-        "checkOut": "2018/08/11",
-        "roomDetailList": [{
-            "units": 1,
-            "roomType": "豪华房",
-            "roomTypeEng": "Deluxe",
-            "bedType": "大床/双床[两份早餐]",
-            "board": "两份早餐",
-            "boardEng": "Breakfast FOR 2 Pax",
-            "pax": 2,
-            "guestsDetailList": ["娃 哈哈 [中国]", "巧克 力 [中国]"]
-        }, {
-            "units": 2,
-            "roomType": "豪华房",
-            "roomTypeEng": "Deluxe",
-            "bedType": "大床/双床[两份早餐]",
-            "board": "两份早餐",
-            "boardEng": "Breakfast FOR 2 Pax",
-            "pax": 1,
-            "guestsDetailList": ["棒棒 糖 [中国]"]
-        }],
-        "hotelName": "北京丽都皇冠假日酒店  Crowne Plaza Beijing Lido",
-        "hotelAddress": "北京 朝阳区 将台路6号",
-        "hotelTel": "010-64373388",
-        "hotelFax": "010-64379858",
-        "cancellationPolicy": "2018年8月10日10:00后不可修改或取消，罚金为首晚房费.noshow罚全段",
-        "addBreakfast": "2018/08/10至2018/08/11儿童早1份",
-        "addBed": "2018/08/10至2018/08/11儿童床1份",
-        "addWBN": "2018/08/10至2018/08/11宽带1份",
-        "customerRequests": "取消条款:入住前0天10点不可修改或取消，罚金为首晚",
-        "emergencyContactsInner": "0755-33397777"
+
+function quickSort222(array) {
+    function sort(low, high) {
+        if(low >= high) return
+
+        var i = low
+        var j = high
+        var flag = array[low]
+
+        while(i < j){
+            while(i < j && array[j] >= flag)    j--
+            array[i] = array[j]
+
+            while(i < j && array[i] <= flag)    i--
+            array[j] = array[i]
+        }
+
+        array[i] = flag
+
+        sort(low, i - 1)
+        sort(i + 1, high)
     }
+    sort(0, array.length - 1);
+    return array;
 }
+
+var res = quickSort222([9,-7,20,1,0.5,2])
+debugger
