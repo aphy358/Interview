@@ -699,25 +699,6 @@
 
 	目录结构包含 api + pages + components + router + store + main
 
-	function setWatcher(page, watch) {
-		Object.keys(watch).forEach(key => {
-			let watchFun = watch[key]
-			let val = page.data[key]
-
-			Object.defineProperty(page.data, key, {
-				configurable: true,
-				enumerable: true,
-				set: function (value) {
-					watchFun.call(page, value, val);
-					val = value;
-				},
-				get: function () {
-					return val;
-				}
-			});
-		});
-		}
-
 
 二、 eventBus vuex
 
@@ -743,7 +724,6 @@
 
 
 五、nextTick原理
-https://www.cnblogs.com/liuhao-web/p/8919623.html
 
  
 六、生命周期函数  https://juejin.im/post/5b41bdef6fb9a04fe63765f1
@@ -1018,6 +998,7 @@ this.setState({ data:data });
 二、304的缓存原理（添加Etag标签.last-modified） 304 网页上次请求没有更新，节省带宽和开销
 
     https://www.cnblogs.com/guojiao1600/p/5110971.html
+	http://web.jobbole.com/87693/
 	1.服务器首先产生Etag,服务器可在稍后使用它来判断页面是否被修改。本质上，客户端通过该记号传回服务器要求服务器验证（客户端）缓存）
 	2.304是	HTTP的状态码，服务器用来标识这个文件没有被修改，不返回内容，浏览器接受到这个状态码会去找浏览器缓存的文件
 	3.流程：客户端请求一个页面A。服务器返回页面A，并在A上加一个Tag客户端渲染该页面，并把Tag也存储在缓存中。客户端再次请求页面A
@@ -1566,7 +1547,7 @@ this.setState({ data:data });
 九、浏览器兼容
 
 	IE：trident内核（IE内核）
-	Firefox：gecko内核，Mozilla自己开发的一套开放源代码、以C++编写的渲染引擎。
+	Firefox：geoko内核，Mozilla自己开发的一套开放源代码、以C++编写的渲染引擎。
 	Safari：webkit内核，开源的浏览器引擎，源自于Linux平台上的一个引擎，经过Apple公司的修改可以支持Mac与Windows平台。
 	Chrome：Blink内核，Google和Opera Software共同研发。
 	Opera：以前是presto内核，现在改为Blink内核。
@@ -1693,19 +1674,29 @@ C#，模仿java，但成长的比java更快，很早就有lambda表达式，比�
 16.WEB应用从服务器主动推送Data到客户端有那些方式？
 
 a. html5 websoket
+
 b. WebSocket 通过 Flash
+
 c. XHR长时间连接
+
 d. XHR Multipart Streaming
+
 e. 不可见的Iframe
+
 f. 标签的长时间连接(可跨域)
 
 17.对前端界面工程师这个职位是怎么样理解的？
 
 a. 前端是最贴近用户的程序员，前端的能力就是能让产品从 90分进化到 100 分，甚至更好
+
 b. 参与项目，快速高质量完成实现效果图，精确到1px；
+
 c. 与团队成员，UI设计，产品经理的沟通；
+
 d. 做好的页面结构，页面重构和用户体验；
+
 e. 处理hack，兼容、写出优美的代码格式；
+
 f. 针对服务器的优化、拥抱最新前端技术。
 
 
@@ -1713,26 +1704,35 @@ f. 针对服务器的优化、拥抱最新前端技术。
 22.平时如何管理你的项目？
 
 a. 先期团队必须确定好全局样式（globe.css），编码模式(utf-8) 等；
+
 b. 编写习惯必须一致（例如都是采用继承式的写法，单样式都写成一行）；
+
 c. 标注样式编写人，各模块都及时标注（标注关键样式调用的地方）；
+
 d. 页面进行标注（例如 页面 模块 开始和结束）；
+
 e. CSS跟HTML 分文件夹并行存放，命名都得统一（例如style.css）；
+
 f. JS 分文件夹存放 命名以该JS功能为准的英文翻译。
+
 g. 图片采用整合的 images.png png8 格式文件使用 尽量整合在一起使用方便将来的管理
 
 23.说说最近最流行的一些东西吧？常去哪些网站？
 
 CSDN、SegmentFault、php.net、MDN、css参考手册、iconfont、
+
 underscore、github、Bootstrap、W3Shool、W3Cplus、caniuse
 
 24.请解释一下 JavaScript 的同源策略
 
 同源策略指的是：协议，域名，端口相同，同源策略是一种安全协议。
+
 指一段脚本只能读取来自同一来源的窗口和文档的属性。
 
 25.AMD和CMD 规范的区别？
-https://blog.csdn.net/Mahuicool/article/details/86129376
+
 AMD 提前执行依赖 - 尽早执行，requireJS 是它的实现
+
 CMD 按需执行依赖 - 懒执行，seaJS 是它的实现
 
 
@@ -1740,45 +1740,64 @@ CMD 按需执行依赖 - 懒执行，seaJS 是它的实现
 27.浏览器的内核分别是什么?
 
 IE浏览器的内核Trident；
+
 Mozilla的Gecko；
+
 Chrome的Blink（WebKit的分支）；
+
 Opera内核原为Presto，现为Blink；
 
 
 29.前端页面有哪三层构成，分别是什么？作用是什么？
 
 a. 结构层：由 HTML 或 XHTML 之类的标记语言负责创建，仅负责语义的表达。解决了页面“内容是什么”的问题。
+
 b. 表示层：由CSS负责创建，解决了页面“如何显示内容”的问题。
+
 c. 行为层：由脚本负责。解决了页面上“内容应该如何对事件作出反应”的问题。
 
 30.知道的网页制作会用到的图片格式有哪些？
 
 png-8，png-24，jpeg，gif，svg
+
 Webp：谷歌（google）开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有JPEG的2/3，并能节省大量的服务器带宽资源和数据空间。Facebook Ebay等知名网站已经开始测试并使用WebP格式。
+
 Apng：全称是“Animated Portable Network Graphics”, 是PNG的位图动画扩展，可以实现png格式的动态图片效果。04年诞生，但一直得不到各大浏览器厂商的支持，直到日前得到 iOS safari 8的支持，有望代替GIF成为下一代动态图标准。
 
 31.一次js请求一般情况下有哪些地方会有缓存处理？
 
 a. 浏览器端存储
+
 b. 浏览器端文件缓存
+
 c. HTTP缓存304
+
 d. 服务器端文件类型缓存
+
 e. 表现层&DOM缓存
 
 32.一个页面上有大量的图片（大型电商网站），加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验[性能优化]。
 
 a. 图片懒加载，滚动到相应位置才加载图片。
+
 b. 图片预加载，如果为幻灯片、相册等，将当前展示图片的前一张和后一张优先下载。
+
 c. 使用CSSsprite，SVGsprite，Iconfont、Base64等技术，如果图片为css图片的话。
+
 d. 如果图片过大，可以使用特殊编码的图片，加载时会先加载一张压缩的特别厉害的缩略图，以提高用户体验。
 
 33.谈谈以前端角度出发做好SEO需要考虑什么？
 
 a. 了解搜索引擎如何抓取网页和如何索引网页
+
 b. meta标签优化
+
 c. 关键词分析
+
 d. 付费给搜索引擎
+
 e. 链接交换和链接广泛度（Link Popularity）
+
 f. 合理的标签使用
 
 
